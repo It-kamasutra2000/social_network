@@ -1,0 +1,30 @@
+.status {
+    font-size: 16px;
+    outline: 0px solid red;
+    .showAndHide {
+        color: red;
+    }
+    .test {
+        display: flex;
+        div {
+            font-weight: 600;
+            margin: 0 5px 0 0px;
+            cursor: pointer;
+        }
+        .statusText {
+            font-weight: 400;
+        }
+        .showMore {
+            font-size: 20px;
+            font-weight: bold;
+            align-self: flex-start;
+        }
+    }
+    @media screen and (max-width: 1600px) {
+        font-size: 14px;
+    }
+    @media screen and (max-width: 1400px) {
+        font-size: 12px;
+    }
+}
+

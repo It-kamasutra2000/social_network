@@ -1,0 +1,52 @@
+.chatPage {
+    padding: 10px;
+    height: 730px;
+    width: 350px;
+    background: white;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    transform: translate(0px, 0px);
+    transition: 0.5s;
+    border: 1px solid silver;
+    border-radius: 10px;
+    outline: 0px solid red;
+    .chatTop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid silver;
+        div {
+            font-size: 20px;
+            span {
+                margin: 0 0px 0 0;
+            }
+        }
+        .icon {
+            font-size: 30px;
+            outline: 0px solid red;
+        }
+    }
+    .chat {
+        overflow: auto;
+        height: 500px;
+        @media screen and (max-height: 750px) {
+            height: 380px;
+        }
+    }
+    &.hide {
+        transform: translate(0px, 680px);
+    }
+    @media screen and (max-height: 750px) {
+        height: 610px;
+        &.hide {
+            transform: translate(0px, 560px);
+        }
+    }
+    @media screen and (max-width: 1600px) {
+        width: 300px;
+    }
+    @media screen and (max-width: 1400px) {
+        width: 280px;
+    }
+}

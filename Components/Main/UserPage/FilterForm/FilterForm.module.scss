@@ -1,0 +1,12 @@
+.form {
+    outline: 0px solid red;
+    display: flex;
+    justify-content: center;
+    .select {
+        width: 100px;
+        margin: 0 0 0 10px;
+    }
+    .SendButton {
+        margin: 0 0 0 5px;
+    }
+}

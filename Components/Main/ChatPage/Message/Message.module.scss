@@ -1,0 +1,59 @@
+.message {
+    margin: 0 0 10px 0;
+    width: 100%;
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        @media screen and (max-width: 1600px) {
+            width: 40px;
+            height: 40px;
+        }
+        @media screen and (max-width: 1400px) {
+            width: 35px;
+            height: 35px;
+        }
+    }
+    .userInfo {
+        display: flex;
+        margin: 0 0 5px 0;
+        max-width: 100%;
+        outline: 0px solid red;
+        .nameAndMess {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin: 0 0 0 10px;
+            flex-wrap: wrap;
+            .userName {
+                font-size: 16px;
+                font-weight: 700;
+                @media screen and (max-width: 1600px) {
+                    font-size: 14px;
+                }
+            }
+            .message {
+                display: flex;
+                outline: 0px solid red;
+                @media screen and (max-width: 1600px) {
+                    font-size: 12px;
+                }
+                div {
+                    margin: 0 5px 0 0;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+    .message {
+        margin: 0 0 0 0;
+    }
+    .bottomLine {
+        border-bottom: 1px solid silver;
+    }
+    .showMore {
+        font-size: 12px;
+    }
+}
+
+

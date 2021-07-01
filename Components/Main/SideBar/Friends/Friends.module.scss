@@ -1,0 +1,16 @@
+.SidBaFriends {
+    margin-top: 15px;
+    h2 {
+        margin: 0 0 10px 5px;
+        font-size: 17px;
+    }
+    .friends {
+        width: 85%;
+        margin: auto;
+    }
+    @media screen and (max-width: 1600px) {
+        h2 {
+            font-size: 15px;
+        }
+    }
+}

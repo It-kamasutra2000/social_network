@@ -1,0 +1,15 @@
+.page {
+    margin: 0 15px 0 0;
+    text-align: center;
+    display: flex;
+    a {
+        color: black;
+        &.active {
+            border-bottom: 2px solid black;
+        }
+    }
+    span {
+        margin: 0 3px 0 0;
+        color: black;
+    }
+}

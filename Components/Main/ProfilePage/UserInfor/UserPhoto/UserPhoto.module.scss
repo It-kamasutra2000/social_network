@@ -1,0 +1,28 @@
+.userPhoto {
+  margin: 0 0 0 30px;
+  position: relative;
+  top: -90px;
+  outline: 0px solid red;
+  width: 150px;
+  height: 150px;
+  padding: 4px;
+  background: white;
+  border-radius: 50%;
+    img {
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+    }
+    .ownerPhoto {
+      cursor: pointer;
+    }
+    @media screen and (max-width: 1600px) {
+      width: 140px;
+      height: 140px;
+  }
+  @media screen and (max-width: 1400px) {
+    width: 130px;
+    height: 130px;
+    top: -80px
+}
+}

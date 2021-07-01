@@ -1,0 +1,39 @@
+.commonContentStyle {
+  width: 60%;
+  min-height: 500px;
+  outline: 0px solid green;
+  background: white;
+  margin: 0 0 0 40px;
+  border: 1px solid silver;
+  border-radius: 10px;
+}
+
+.commonContentStyle.authorized {
+  width: 100%;
+  outline: 0px solid red;
+}
+
+.footer {
+  padding: 60px 0 30px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+@media screen and (max-width: 1600px) {
+  .commonContentStyle {
+    margin: 0 0 0 25px;
+    min-height: 450px;
+    width: 65%;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .commonContentStyle {
+   width: 70%;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .commonContentStyle {
+    width: 90%;
+    margin: 0 auto;  
+  }
+}

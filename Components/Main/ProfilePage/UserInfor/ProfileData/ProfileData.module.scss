@@ -1,0 +1,33 @@
+.profileData {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .userNameAndStatus {
+        outline: 0px solid red;
+        margin: 0 0 10px 20px;
+        max-width: 60%;
+        .userName {
+            font-size: 22px;
+            font-weight: 700;
+            @media screen and (max-width: 1600px) {
+                font-size: 19px;
+            }
+            @media screen and (max-width: 1400px) {
+                font-size: 16px;
+            }
+        }
+    }
+    .aboutMe {
+        margin: 15px 0 0 0;
+    }
+    span {
+        font-weight: 600;
+        font-size: 16px;
+        @media screen and (max-width: 1600px) {
+            font-size: 14px;
+        }
+        @media screen and (max-width: 1400px) {
+            font-size: 12px;
+        }
+    }
+}

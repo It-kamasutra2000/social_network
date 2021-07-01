@@ -1,0 +1,64 @@
+.friend {
+    text-align: center;
+    margin: 10px 0 0 0;
+    outline: 0px solid red;
+    display: flex;
+    justify-content: space-between;
+    .imgAndName {
+        display: flex;
+        align-items: center;
+    }
+    img {
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+    }
+    .nameLink {
+        margin: 0 0 0 10px;
+        cursor: pointer;
+        a {
+            color: black;
+            font-weight: 400;
+        }
+    }
+    button {
+        align-self: center;
+        cursor: pointer;
+    }
+    .showMore {
+        font-size: 25px;
+    }
+    @media screen and (max-width: 1600px) {
+        img {
+            height: 40px;
+            width: 40px;
+        }
+        a {
+            font-size: 12px;
+        }
+        button {
+            font-size: 12px;
+        }
+        .showMore {
+            font-size: 18px;
+        }
+    } 
+    @media screen and (max-width: 1400px) {
+        img {
+            height: 30px;
+            width: 30px;
+        }
+        a {
+            font-size: 10px;
+        }
+        button {
+            font-size: 10px;
+        }
+        .showMore {
+            font-size: 15px;
+        }
+    } 
+}
+
+

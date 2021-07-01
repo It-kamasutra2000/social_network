@@ -1,0 +1,47 @@
+@mixin imgHW($width, $height){
+    height: $width;
+    width: $height;
+}
+
+.preloader {
+    &.profilePre {
+        margin: 50px 0 0 150px;
+        img {
+            @include imgHW(60px, 60px);
+        }
+    }
+    &.statusPre {
+        margin: 0px 0 0 0;
+        img {
+            @include imgHW(20px, 20px);
+        }
+    }
+    &.photosPre {
+        margin: 0 0 0 0;
+        position: relative;
+        text-align: center;
+        img {
+            @include imgHW(20px, 20px);
+        }
+    }
+    &.usersPre {
+        margin: 8px 0 0 10px;
+        img {
+            @include imgHW(40px, 40px);
+        }
+    }
+    &.updProfPre {
+        margin: 0 0 0 8px;
+        img {
+            @include imgHW(20px, 20px);
+        }
+    }
+    &.appPre {
+        text-align: center;
+        margin: 300px 0 0 0;
+        img {
+
+            @include imgHW(80px, 80px)
+        }
+    }
+}

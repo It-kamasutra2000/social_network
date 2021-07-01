@@ -1,0 +1,57 @@
+.user {
+    width: 95%;
+    margin: auto;
+    margin-bottom: 20px;
+    .userInfo {
+        display: flex;
+        .rightBlock {
+            max-width: 100px;
+            margin: 0 20px 0 0;
+            outline: 0px solid red;
+            img {
+                width: 100%;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            @media screen and (max-width: 1600px) {
+                   max-width: 80px; 
+            }
+            @media screen and (max-width: 1400px) {
+    
+            }
+            .button {
+                text-align: center;
+                margin: 5px 0 0 0;
+                button {
+                    @media screen and (max-width: 1600px) {
+                        font-size: 12px;
+                    } 
+                }  
+            }
+        }
+        .leftBlock {
+            outline: 0px solid green;
+            .status {
+                font-weight: 500;
+                @media screen and (max-width: 1600px) {
+                    font-size: 12px;
+                }
+            }
+            .userName {
+                font-size: 20px;
+                font-weight: 700;
+                cursor: pointer;
+                a {
+                    color: black;
+                }
+                @media screen and (max-width: 1600px) {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+    .bottomLine {
+        border-bottom: 2px solid silver;
+        height: 5px;
+    }
+}

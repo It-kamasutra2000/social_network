@@ -1,0 +1,35 @@
+.form {
+    overflow: auto;
+    height: 450px;
+    outline: 0px solid red;
+    padding-right: 20px;
+    .pre {
+      text-align: center;
+    }
+    .formItem {
+        margin: 0 0 15px 0;
+    }
+    .contacts {
+        margin: 0 0 0 0px;
+        .contactsHeader {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+        }
+        .contact {
+            margin: 0 0 15px 15px;
+        }
+    }
+    .SendButton {
+        margin: 0 0 10px 0;
+    }
+    .closeIcon {
+        cursor: pointer;
+        font-size: 22px;
+        color: #8c8c8c;
+        &:hover {
+            color: #000;
+        }
+    }
+}
+
