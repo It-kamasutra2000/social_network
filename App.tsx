@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './App.css';
 import 'antd/dist/antd.css';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Header } from './Components/Header/Header';
 import { Main } from './Components/Main/Main';
 import { Provider, useDispatch, useSelector } from 'react-redux';
@@ -39,11 +39,11 @@ function App() {
 
 const AppContainer = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <App />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
