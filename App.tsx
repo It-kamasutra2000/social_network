@@ -9,6 +9,7 @@ import store from './Redux/store';
 import { Preloader } from './Components/Common/Preloader/Preloader';
 import { authorize } from './Redux/App-Reducer';
 import { selectIsAuthorizeFinished } from './Redux/selectors/App-selector';
+import { Footer } from './Components/Footer/Footer';
 document.body.style.backgroundColor = "#F3F2EF";
 
 
@@ -29,9 +30,7 @@ function App() {
     <div className= {'App'}>
       <Header />
       <Main />
-      <div className={'footer'}>
-        this site was created by David Gasparian
-      </div>
+      <Footer/>
     </div>
   );
 }
