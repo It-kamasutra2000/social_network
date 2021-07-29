@@ -55,8 +55,7 @@ export const Chat: React.FC = React.memo(() => {
     }, [dispatch])
 
 
-    const chatMessages = messages.map((m) => <Message key={m.id}
-        message={m} />)
+    const chatMessages = messages.map((m) => <Message key={m.id} id={m.userId} message={m} />)
 
     return (
         <div className={s.chat} >

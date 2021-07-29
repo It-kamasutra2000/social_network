@@ -1,23 +1,27 @@
 .status {
+    display: flex;
     font-size: 16px;
-    outline: 0px solid red;
-    .showAndHide {
-        color: red;
+    &.cursor {
+        cursor: pointer;
     }
-    .test {
-        display: flex;
-        div {
-            font-weight: 600;
-            margin: 0 5px 0 0px;
-            cursor: pointer;
+    .statusTitle {
+        font-weight: 600;
+        margin: 0 5px 0 0px;
+    }
+    .statusText {
+        font-weight: 400;
+    }
+    .showMore {
+        font-size: 18px;
+        font-weight: bold;
+        align-self: flex-start;
+        cursor: pointer;
+        margin: 0 0 0 2px;
+        @media screen and (max-width: 1600px) {
+            font-size: 14px;
         }
-        .statusText {
-            font-weight: 400;
-        }
-        .showMore {
-            font-size: 20px;
-            font-weight: bold;
-            align-self: flex-start;
+        @media screen and (max-width: 1400px) {
+            font-size: 12px;
         }
     }
     @media screen and (max-width: 1600px) {
@@ -28,3 +32,25 @@
     }
 }
 
+.menu {
+    background-color: #8c8c8c;
+    .showInfoMenu {
+        background: #8c8c8c;
+        color: white;
+        &:hover {
+            background: #8c8c8c;
+            color: white;
+        }
+    }
+    @media screen and (max-width: 1600px) {
+        div {
+            font-size: 12px;
+            padding: 0px;
+        }
+    }
+    @media screen and (max-width: 1400px) {
+        div {
+            font-size: 10px;
+        }
+    }
+}

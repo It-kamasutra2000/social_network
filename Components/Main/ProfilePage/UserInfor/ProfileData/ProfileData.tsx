@@ -7,21 +7,32 @@ import { ParamTypes } from "../UserInfo"
 import s from './ProfileData.module.scss';
 import { Status } from "./Status/Status"
 import { UserContacts } from "./UserContacts/UserContacts"
+import { AiOutlineEdit } from 'react-icons/ai';
 
 
+type ProfileDataPropsType = {
+    activateEditMode: () => void
+}
 
-export const ProfileData: React.FC = React.memo(() => {
+export const ProfileData: React.FC<ProfileDataPropsType> = React.memo(({ activateEditMode }) => {
 
     const profile = useSelector(selectProfile) as ProfileType
     const { userId } = useParams<ParamTypes>()
-  
+
     return (
         <div className={s.profileData}>
             <div className={s.userNameAndStatus}>
                 <div className={s.userName}>
                     {profile?.fullName}
+                    {!userId && <div className={s.editIcon} onClick={() => {
+                        activateEditMode()
+                    }}>
+                        <AiOutlineEdit />
+                    </div>}
                 </div>
-                <Status isOwner={!!userId} />
+                <div>
+                    <Status isOwner={!userId} />
+                </div>
                 <div className={s.aboutMe}>
                     <span>about me: </span>{profile?.aboutMe || '.....'}
                 </div>

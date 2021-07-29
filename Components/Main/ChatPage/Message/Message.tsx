@@ -8,15 +8,16 @@ import { useShowMore } from '../../../../hooks/useShowMore';
 
 interface IPropsType {
     message: MessageType
+    id: number
 }
 
-export const Message: React.FC<IPropsType> = React.memo(({ message }) => {
+export const Message: React.FC<IPropsType> = React.memo(({ message, id }) => {
 
-    let { 
+    let {
         fullText: fullMessageText, setShowFullText: setShowFullMessageText, menu, showFullText: showFullMessageText,
-        isTextBig: isMessageTextBig, shortText: shortMessageText 
+        isTextBig: isMessageTextBig, shortText: shortMessageText
     } = useShowMore(message.message, 20, 'Message')
-    
+
 
     const showMore = <span className={s.showMore}>{isMessageTextBig
         ? <Dropdown overlay={menu} placement="topCenter">
@@ -35,9 +36,9 @@ export const Message: React.FC<IPropsType> = React.memo(({ message }) => {
     </Button>
 
     const toggleButton = showFullMessageText ? hide : showMore
-    let messageText = message.message 
+    let messageText = message.message
 
-    if(isMessageTextBig) {
+    if (isMessageTextBig) {
         messageText = shortMessageText + '...'
     } else {
         messageText = fullMessageText

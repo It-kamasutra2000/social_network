@@ -5,7 +5,7 @@ import { selectIsFetching, selectStatus } from "../../../../../../Redux/selector
 import { Preloader } from "../../../../../Common/Preloader/Preloader";
 import s from './Status.module.scss';
 import { StatusForm } from "./StatusForm/StatusForm";
-import { Dropdown } from 'antd';
+import { Dropdown, Menu } from 'antd';
 import { useShowMore } from "../../../../../../hooks/useShowMore";
 
 interface IPropsType {
@@ -21,9 +21,13 @@ export const Status: React.FC<IPropsType> = React.memo(({ isOwner }) => {
     const [editMode, setEditMode] = useState<boolean>(false);
 
     let {
-        fullText: fullStatusText, menu, showFullText: showFullStatusText,
-        isTextBig: isStatusTextBig, setShowFullText: setShowFullStatusText, shortText: shortStatusText
-     } = useShowMore(status, 20, 'Status')
+        fullText: fullStatusText,
+        menu: showMoreMenu,
+        showFullText: showFullStatusText,
+        isTextBig: isStatusTextBig,
+        setShowFullText: setShowFullStatusText,
+        shortText: shortStatusText
+    } = useShowMore(status, 20, 'Status')
 
     const activateEditMode = () => {
         setEditMode(true)
@@ -36,7 +40,7 @@ export const Status: React.FC<IPropsType> = React.memo(({ isOwner }) => {
 
 
     const showMore = isStatusTextBig ?
-        <Dropdown overlay={menu} placement="topCenter">
+        <Dropdown overlay={showMoreMenu} placement="topCenter">
             <div className={s.showMore} onClick={() => {
                 setShowFullStatusText(true)
             }}>
@@ -46,31 +50,55 @@ export const Status: React.FC<IPropsType> = React.memo(({ isOwner }) => {
         : null
 
     let statusText = status
-    if(isStatusTextBig) {
+    if (isStatusTextBig) {
         statusText = shortStatusText
-    }else if(!statusText) {
+    } else if (!statusText) {
         statusText = 'no status'
-    }  else {
+    } else {
         statusText = fullStatusText
     }
 
     fullStatusText = fullStatusText ? fullStatusText : 'no status'
 
+
+
+    const showInfoMenu = (
+        <Menu className={s.menu}>
+            <Menu.Item className={s.showInfoMenu}>
+                <div>
+                    doubleClick
+                </div>
+            </Menu.Item>
+        </Menu>
+    );
+
     return (
-        <div className={s.status}>
-            {!editMode && <div className={s.test} onDoubleClick={() => {
-                if (!isOwner) {
+        <>
+            {!editMode && <div className={`${s.status} ${isOwner ? s.cursor : ''}`} onDoubleClick={() => {
+                if (isOwner) {
                     activateEditMode()
                 }
             }}>
-                <div>status: </div>
-                <div className={s.statusText}>{showFullStatusText ? fullStatusText : statusText}</div>
-                <div >{showFullStatusText || showMore } </div>
+                {isOwner
+                    ? <Dropdown overlay={showInfoMenu} placement="topCenter">
+                        <div className={s.statusTitle}>
+                            status:
+                        </div>
+                    </Dropdown>
+                    : <div className={s.statusTitle}>
+                        status:
+                    </div>}
+                <div className={s.statusText}>
+                    {showFullStatusText ? fullStatusText : statusText}
+                </div>
+                <div >
+                    {showFullStatusText || showMore}
+                </div>
             </div>}
-            {editMode && <div data-test={'editMode'}>
+            {editMode && <div>
                 <StatusForm deActivateEditMode={deActivateEditMode} />
             </div>}
             {isFetching && <div><Preloader styles={'statusPre'} /></div>}
-        </div>
+        </>
     )
 })

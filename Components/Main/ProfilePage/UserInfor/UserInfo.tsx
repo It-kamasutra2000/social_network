@@ -57,15 +57,12 @@ export const UserInfo: React.FC = React.memo(() => {
 
     return (
         <div className={s.aboutUser}>
-            <UserPhoto isOwner={!!userId} img={profile.photos?.large} />
-            {!editMode && <ProfileData />}
+            <UserPhoto isOwner={!userId} img={profile.photos?.large} />
+            <div>
+            {!editMode && <ProfileData activateEditMode={activateEditMode}/>}
+          
+            </div>
             {editMode &&  <ProfileDataForm deActivateEditMode={deActivateEditMode} editMode={editMode}/>}
-            
-            {!userId && <div className={s.editIcon} onClick={() => {
-                activateEditMode()
-            }}>
-                <AiOutlineEdit />
-            </div>}
         </div>
     )
 })

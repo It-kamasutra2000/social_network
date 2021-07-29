@@ -8,4 +8,14 @@
             color: white;
         }
     }
+    @media screen and (max-width: 1600px) {
+        span {
+            font-size: 12px;
+        }
+    }
+    @media screen and (max-width: 1400px) {
+        span {
+            font-size: 10px;
+        }
+    }
 }

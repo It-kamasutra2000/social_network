@@ -78,7 +78,7 @@ export const UsersPage: React.FC = React.memo(() => {
     }
 
     const usersElements = users.map((u) => <User isAuth={isAuth} followingInProgress={followingInProgress} key={u.id} id={u.id} userName={u.name}
-        photos={u.photos} status={u.status} followed={u.followed} />)
+        photos={u.photos} status={u.status} followed={u.followed} history={history} />)
 
     return (
         <div className={s.usersPage}>

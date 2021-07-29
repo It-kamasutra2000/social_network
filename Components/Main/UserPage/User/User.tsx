@@ -6,8 +6,9 @@ import spareUserPhoto from '../../../../images/img.jpg'
 import { NavLink } from 'react-router-dom';
 import { actions, follow, unFollow } from '../../../../Redux/User-Reducer';
 import { useDispatch } from 'react-redux';
+import { History } from 'history';
 
-type PropsType = {
+interface PropsType {
     id: number
     userName: string | null
     status: string | null
@@ -15,37 +16,34 @@ type PropsType = {
     followed: boolean
     followingInProgress: number[]
     isAuth: boolean
+    history: History
 }
 
-export const User: React.FC<PropsType> = React.memo(({ id, userName, status, photos, followed, followingInProgress, isAuth }) => {
+export const User: React.FC<PropsType> = React.memo(({ id, userName, status, photos, followed, followingInProgress, history, isAuth }) => {
 
     const dispatch = useDispatch()
 
-    const userPhoto = photos.large
-    
-
-    let button;
-
-    if (followed) {
-        button = <div className={s.button + " " + s.follow}>
-            <Button disabled={followingInProgress.some((FPId) => FPId === id)} onClick={() => {
-                dispatch(unFollow(id))
-                dispatch(actions.setFollowInProgress(id, true))
-            }}>
-                follow
-            </Button>
-        </div>
-    } else {
-        button = <div className={s.button + " " + s.unFollow}>
-            <Button disabled={followingInProgress.some((FPId) => FPId === id)} onClick={() => {
-                dispatch(follow(id))
-                dispatch(actions.setFollowInProgress(id, true))
-            }}>
-                unFollow
-            </Button>
-        </div>
+    const followUnFollow = (followedStatus: string, action: (userId: number) => void) => {
+        return  <div className={s.button + " " + s[followedStatus]}>
+        <Button disabled={followingInProgress.some((FPId) => FPId === id)} onClick={() => {
+            if (!isAuth) {
+                history.push('./login')
+                return
+            }
+            dispatch(action(id))
+            dispatch(actions.setFollowInProgress(id, true))
+        }}>
+            {followedStatus}
+        </Button>
+    </div>
     }
 
+    let button;
+    if (followed) {
+        button = followUnFollow('unFollow', unFollow)
+    } else {
+        button = followUnFollow('follow', follow)
+    }
 
     return (
         <div className={s.user}>
@@ -53,10 +51,10 @@ export const User: React.FC<PropsType> = React.memo(({ id, userName, status, pho
                 <div className={s.rightBlock}>
                     <div className={s.img}>
                         <NavLink to={`/profile/${id}`}>
-                            <img src={userPhoto ? userPhoto : spareUserPhoto} alt={'userPhoto'} />
+                            <img src={ photos.large ?  photos.large : spareUserPhoto} alt={'userPhoto'} />
                         </NavLink>
                     </div>
-                    {isAuth ? button : null}
+                    {button}
                 </div>
                 <div className={s.leftBlock}>
                     <div className={s.userName}>

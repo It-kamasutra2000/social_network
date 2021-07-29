@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProfileType } from "../../../../../types/types";
 import { updateProfile } from "../../../../../Redux/Profile-Reducer";
 import { Preloader } from "../../../../Common/Preloader/Preloader";
-import formError  from "../../../../Common/formsControl/formsControl.module.scss";
+import formError from "../../../../Common/formsControl/formsControl.module.scss";
 import { Modal } from 'antd';
 
 
@@ -24,7 +24,7 @@ type PropsType = {
 }
 
 
-export const ProfileDataForm: React.FC<PropsType> = React.memo(({deActivateEditMode, editMode}) => {
+export const ProfileDataForm: React.FC<PropsType> = React.memo(({ deActivateEditMode, editMode }) => {
 
     const profile = useSelector(selectProfile) as ProfileType
     const dispatch = useDispatch()
@@ -59,14 +59,15 @@ export const ProfileDataForm: React.FC<PropsType> = React.memo(({deActivateEditM
             {({ isSubmitting, values, errors, setErrors, resetForm, setSubmitting }) => (
                 <Modal centered title={'Edit your profile'} visible={editMode} onCancel={deActivateEditMode} footer={[
                     <Button htmlType={"submit"} type={'primary'} onClick={() => {
-                    
+                        if (Object.keys(errors).length === 0 && errors.constructor === Object) {
                             dispatch(updateProfile(values, setErrors))
                             if (!(updateProfileStatus === 'error' || updateProfileStatus === 'pending')) {
                                 resetForm({})
                                 deActivateEditMode()
                                 setSubmitting(false)
                             }
-                        
+                        }
+
                     }}>
                         save
                     </Button>,
@@ -76,45 +77,45 @@ export const ProfileDataForm: React.FC<PropsType> = React.memo(({deActivateEditM
                         cancel
                     </Button>
                 ]}>
-                <FormikForm className={s.form}>
-                            <div className={s.pre}>
-                                {updateProfileStatus === 'pending' && <div><Preloader styles={'updProfPre'}/></div>}
+                    <FormikForm className={s.form}>
+                        <div className={s.pre}>
+                            {updateProfileStatus === 'pending' && <div><Preloader styles={'updProfPre'} /></div>}
+                        </div>
+                        <Input.Group>
+                            <FormItem className={s.formItem} label={'name'}>
+                                <Field name="fullName"
+                                    validate={reqAndMaxLValCreator(20)}
+                                    render={({ field }: FieldProps) => <Input {...field} placeholder="fullName" autoFocus={true} />} />
+                                <ErrorMessage name="fullName" component={() => <div className={formError.fieldError}>{errors.fullName}</div>} />
+                            </FormItem>
+                            <FormItem className={s.formItem} label={'about me'}>
+                                <Field name="aboutMe"
+                                    validate={reqAndMaxLValCreator(50)}
+                                    render={({ field }: FieldProps) => <TextArea {...field} placeholder="aboutMe" />} />
+                                <ErrorMessage name="aboutMe" component={() => <div className={formError.fieldError}>{errors.aboutMe}</div>} />
+                            </FormItem>
+                            <FormItem className={s.formItem}>
+                                <Field name="lookingForAJob"
+                                    render={({ field }: FieldProps) => <Checkbox {...field} checked={values.lookingForAJob}>
+                                        looking for a job
+                                    </Checkbox>} />
+                                <ErrorMessage name="lookingForAJob" component={() => <div className={formError.fieldError}>{errors.lookingForAJob}</div>} />
+                            </FormItem>
+                            <FormItem className={s.formItem} label={'my professional skills'}>
+                                <Field name="lookingForAJobDescription"
+                                    validate={reqAndMaxLValCreator(40)}
+                                    render={({ field }: FieldProps) => <TextArea {...field} placeholder="lookingForAJobDescription" />} />
+                                <ErrorMessage name="lookingForAJobDescription"
+                                    component={() => <div className={formError.fieldError}>{errors.lookingForAJobDescription}</div>} />
+                            </FormItem>
+                        </Input.Group>
+                        <FormItem className={s.contacts}>
+                            <div className={s.contactsHeader}>
+                                contacts
                             </div>
-                            <Input.Group>
-                                <FormItem className={s.formItem} label={'name'}>
-                                    <Field name="fullName"
-                                        validate={reqAndMaxLValCreator(20)}
-                                        render={({ field }: FieldProps) => <Input {...field} placeholder="fullName" autoFocus={true} />} />
-                                    <ErrorMessage name="fullName" component={() => <div className={formError.fieldError}>{errors.fullName}</div>} />
-                                </FormItem>
-                                <FormItem className={s.formItem} label={'about me'}>
-                                    <Field name="aboutMe"
-                                        validate={reqAndMaxLValCreator(50)}
-                                        render={({ field }: FieldProps) => <TextArea {...field} placeholder="aboutMe" />} />
-                                    <ErrorMessage name="aboutMe" component={() => <div className={formError.fieldError}>{errors.aboutMe}</div>} />
-                                </FormItem>
-                                <FormItem className={s.formItem}>
-                                    <Field name="lookingForAJob"
-                                        render={({ field }: FieldProps) => <Checkbox {...field} checked={values.lookingForAJob}>
-                                            looking for a job
-                                     </Checkbox>} />
-                                    <ErrorMessage name="lookingForAJob" component={() => <div className={formError.fieldError}>{errors.lookingForAJob}</div>} />
-                                </FormItem>
-                                <FormItem className={s.formItem} label={'my professional skills'}>
-                                    <Field name="lookingForAJobDescription"
-                                        validate={reqAndMaxLValCreator(40)}
-                                        render={({ field }: FieldProps) => <TextArea {...field} placeholder="lookingForAJobDescription" />} />
-                                    <ErrorMessage name="lookingForAJobDescription"
-                                        component={() => <div className={formError.fieldError}>{errors.lookingForAJobDescription}</div>} />
-                                </FormItem>
-                            </Input.Group>
-                            <FormItem className={s.contacts}>
-                                <div className={s.contactsHeader}>
-                                    contacts
-                                </div>
-                                {contactsFormCreator(errors)}
-                            </FormItem>                   
-                </FormikForm>
+                            {contactsFormCreator(errors)}
+                        </FormItem>
+                    </FormikForm>
                 </Modal>
             )}
         </Formik>

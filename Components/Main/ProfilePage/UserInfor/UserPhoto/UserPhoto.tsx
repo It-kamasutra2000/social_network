@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { updateUserPhoto } from '../../../../../Redux/Profile-Reducer';
 import { selectIsLoading } from "../../../../../Redux/selectors/profile-selector"
 import { Preloader } from "../../../../Common/Preloader/Preloader"
+import { AiOutlineSelect } from 'react-icons/ai';
 
 
 type PropsType = {
@@ -25,14 +26,17 @@ export const UserPhoto: React.FC<PropsType> = React.memo(({ img, isOwner }) => {
 
     return (
         <div className={s.userPhoto}>
-            {!isOwner 
-            ? <label htmlFor="file">
-                <img className={s.ownerPhoto} src={img ? img : userPhoto} alt={'userPhoto'} />
-             </label>
-            : <img src={img ? img : userPhoto} alt={'userPhoto'} />
-            }
+            <div>
+                <img src={img ? img : userPhoto} alt={'userPhoto'} />
+            </div>
+            {isOwner && <div className={s.selectPhoto}>
+                <label className={s.label} htmlFor="file">
+                    <AiOutlineSelect />
+                </label>
+            </div>}
+
             <Input hidden={true} type={'file'} id={'file'} onChange={onHandleSelect} />
-                {isLoading && <Preloader styles={'photosPre'} />}
+            {isLoading && <Preloader styles={'photosPre'} />}
         </div>
     )
 })
