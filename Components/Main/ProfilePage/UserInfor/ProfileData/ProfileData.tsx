@@ -1,23 +1,18 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router"
+
 import { selectProfile } from "../../../../../Redux/selectors/profile-selector"
 import { ProfileType } from "../../../../../types/types"
-import { ParamTypes } from "../UserInfo"
 import s from './ProfileData.module.scss';
 import { Status } from "./Status/Status"
 import { UserContacts } from "./UserContacts/UserContacts"
 import { AiOutlineEdit } from 'react-icons/ai';
 
-
-type ProfileDataPropsType = {
-    activateEditMode: () => void
-}
-
 export const ProfileData: React.FC<ProfileDataPropsType> = React.memo(({ activateEditMode }) => {
 
     const profile = useSelector(selectProfile) as ProfileType
-    const { userId } = useParams<ParamTypes>()
+    const { userId } = useParams<UserIdParamTypes>()
 
     return (
         <div className={s.profileData}>

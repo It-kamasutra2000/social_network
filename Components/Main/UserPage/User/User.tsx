@@ -8,7 +8,8 @@ import { actions, follow, unFollow } from '../../../../Redux/User-Reducer';
 import { useDispatch } from 'react-redux';
 import { History } from 'history';
 
-interface PropsType {
+// this type must be here for this code below to work
+interface IUserProps {
     id: number
     userName: string | null
     status: string | null
@@ -19,7 +20,7 @@ interface PropsType {
     history: History
 }
 
-export const User: React.FC<PropsType> = React.memo(({ id, userName, status, photos, followed, followingInProgress, history, isAuth }) => {
+export const User: React.FC<IUserProps> = React.memo(({ id, userName, status, photos, followed, followingInProgress, history, isAuth }) => {
 
     const dispatch = useDispatch()
 

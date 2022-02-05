@@ -14,15 +14,13 @@ const Option = Select.Option
 const FormItem = Form.Item;
 const maxLength = maxLengthCreator(30)
 
-type PropsType = {
-    onFilterHandler: (filter: FilterType) => void
-}
+
 type FilterFormValuesType = {
     term: string
     friend: string
 }
 
-export const FilterForm: React.FC<PropsType> = React.memo(({onFilterHandler}) => {
+export const FilterForm: React.FC<FilterFormPropsType> = React.memo(({onFilterHandler}) => {
 
     const filter = useSelector(selectFilter)
 

@@ -1,23 +1,23 @@
-import { ProfilePage } from "./ProfilePage/ProfilePage"
-import { SideBar } from "./SideBar/SideBar"
-import React, { Suspense } from 'react';
+import React, { FC, Suspense } from 'react';
+import { Route, Redirect, Switch } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import s from "./Main.module.scss";
 import '../../App.css';
-import { Route, Redirect, Switch } from "react-router-dom";
 import { UsersPage } from "./UserPage/UserPage";
-import { useSelector } from "react-redux";
+import { ProfilePage } from "./ProfilePage/ProfilePage"
+import { SideBar } from "./SideBar/SideBar"
 import { selectIsAuth } from '../../Redux/selectors/auth-selector'
 import { LoginPage } from "./LoginPage/LoginPage";
 import { NotFound } from './../NotFound/NotFound'
 
 
-const ChatPage: React.FC = React.lazy(() => import('./ChatPage/ChatPage'));
+const ChatPage: FC = React.lazy(() => import('./ChatPage/ChatPage'));
 
 
 export const Main = React.memo(() => {
 
   const isAuth = useSelector(selectIsAuth)
-
 
   return (
     <div className={s.main}>
@@ -25,7 +25,7 @@ export const Main = React.memo(() => {
       <div className={`commonContentStyle ${!isAuth ? 'authorized' : ''}`}>
         <div>
           <Switch>
-            <Route path={'/profile/:userId?'} render={(match) => {
+            <Route path={'/profile/:userId?'} render={() => {
               return <ProfilePage />
             }} />
             <Route path={'/users'}>
@@ -46,7 +46,7 @@ export const Main = React.memo(() => {
       </div>
       <div>
          {isAuth && <Suspense fallback={<div>loading...</div>}>
-        <   ChatPage/>
+        <ChatPage/>
         </Suspense>}
       </div> 
     </div>

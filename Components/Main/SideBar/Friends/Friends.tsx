@@ -1,5 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
+
 import { selectFriends } from "../../../../Redux/selectors/sideBar-selector"
 import s from './Friends.module.scss'
 import {Friend} from './Friend/Friend'

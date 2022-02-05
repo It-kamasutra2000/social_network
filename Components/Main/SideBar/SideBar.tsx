@@ -1,11 +1,12 @@
 
 import React, { useEffect } from 'react';
-import s from "./SideBar.module.scss";
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
+import s from "./SideBar.module.scss";
 import { SidebarUserPhoto } from './SidebarUserPhoto/SidebarUserPhoto';
 import { getAuthUser } from '../../../Redux/auth-Reducer';
 import { selectAuthUserProfile } from '../../../Redux/selectors/auth-selector';
-import { NavLink } from 'react-router-dom';
 import { Friends } from './Friends/Friends'
 import { getFriends } from '../../../Redux/Sidebar-Reducer';
 
@@ -13,7 +14,7 @@ import { getFriends } from '../../../Redux/Sidebar-Reducer';
 export const SideBar = () => {
 
   const dispatch = useDispatch()
-  const profile = useSelector(selectAuthUserProfile)
+  const authorizedUserData = useSelector(selectAuthUserProfile)
 
   useEffect(() => {
     dispatch(getAuthUser())
@@ -28,12 +29,12 @@ export const SideBar = () => {
       <div className={s.sidebarBottom}>
         <div className={s.userPhoto}>
           <NavLink to={'/profile'}>
-            <SidebarUserPhoto img={profile?.photos.large} />
+            <SidebarUserPhoto img={authorizedUserData?.photos.large} />
           </NavLink>
         </div>
         <div className={s.userName}>
           <NavLink to={'/profile'}>
-            <span>{profile?.fullName}</span>
+            <span>{authorizedUserData?.fullName}</span>
           </NavLink>
         </div>
         <div>

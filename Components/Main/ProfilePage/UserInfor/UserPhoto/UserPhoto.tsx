@@ -1,20 +1,16 @@
 import { Input } from "antd"
 import React, { FormEvent } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { AiOutlineSelect } from 'react-icons/ai';
+
 import s from './UserPhoto.module.scss'
 import userPhoto from '../../../../../images/img.jpg'
-import { useDispatch, useSelector } from "react-redux"
 import { updateUserPhoto } from '../../../../../Redux/Profile-Reducer';
 import { selectIsLoading } from "../../../../../Redux/selectors/profile-selector"
 import { Preloader } from "../../../../Common/Preloader/Preloader"
-import { AiOutlineSelect } from 'react-icons/ai';
 
 
-type PropsType = {
-    img: string | null
-    isOwner: boolean
-}
-
-export const UserPhoto: React.FC<PropsType> = React.memo(({ img, isOwner }) => {
+export const UserPhoto: React.FC<UserPhotoType> = React.memo(({ img, isOwner }) => {
 
     const dispatch = useDispatch()
     const isLoading = useSelector(selectIsLoading)

@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-import './App.css';
 import 'antd/dist/antd.css';
-import { HashRouter } from 'react-router-dom';
+
+import './App.css';
 import { Header } from './Components/Header/Header';
 import { Main } from './Components/Main/Main';
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import store from './Redux/store';
+import { useDispatch, useSelector } from 'react-redux';
 import { Preloader } from './Components/Common/Preloader/Preloader';
 import { authorize } from './Redux/App-Reducer';
 import { selectIsAuthorizeFinished } from './Redux/selectors/App-selector';
@@ -19,31 +18,20 @@ function App() {
   const isAuthorizeFinished = useSelector(selectIsAuthorizeFinished)
 
   useEffect(() => {
-    dispatch(authorize())
-  }, [dispatch])
+    dispatch(authorize());
+  }, [dispatch]);
 
-  if(!isAuthorizeFinished) {
+  if (!isAuthorizeFinished) {
     return <Preloader styles={'appPre'} />
   }
 
   return (
-    <div className= {'App'}>
+    <div className={'App'}>
       <Header />
       <Main />
-      <Footer/>
+      <Footer />
     </div>
   );
 }
 
-
-const AppContainer = () => {
-  return (
-    <HashRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </HashRouter>
-  )
-}
-
-export default AppContainer;
+export default App;

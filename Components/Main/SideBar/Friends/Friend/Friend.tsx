@@ -1,7 +1,6 @@
 import React from "react"
 import s from './Friend.module.scss'
 import sparePhoto from '../../../../../images/img.jpg'
-import { PhotosType } from "../../../../../types/types"
 import { NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { selectFollowingInProgress } from "../../../../../Redux/selectors/user-selector"
@@ -11,15 +10,7 @@ import { Dropdown, Button } from 'antd';
 import { useShowMore } from "../../../../../hooks/useShowMore"
 
 
-interface IPropsType {
-    photos: PhotosType
-    id: number
-    name: string
-}
-
-
-export const Friend: React.FC<IPropsType> = React.memo(({ photos, id, name }) => {
-
+export const Friend: React.FC<IFriendProps> = React.memo(({ photos, id, name }) => {
 
     let {
         fullText: fullFriendName, menu, showFullText: showFullFriendName,
@@ -31,6 +22,12 @@ export const Friend: React.FC<IPropsType> = React.memo(({ photos, id, name }) =>
     const followingInProgress = useSelector(selectFollowingInProgress)
     const dispatch = useDispatch()
 
+    const onHandelClick = () => {
+        dispatch(deleteFriend(id))
+        dispatch(actions.setFollowInProgress(id, true))
+    }
+
+    const isDisabled = followingInProgress.some((selectedId) => selectedId === id)
 
     let friendName = name 
     if(isFriendNameBig) {
@@ -58,10 +55,7 @@ export const Friend: React.FC<IPropsType> = React.memo(({ photos, id, name }) =>
                     </NavLink>
                 </div>
             </div>
-            <Button disabled={followingInProgress.some((selectedId) => selectedId === id)} onClick={() => {
-                dispatch(deleteFriend(id))
-                dispatch(actions.setFollowInProgress(id, true))
-            }}>
+            <Button disabled={isDisabled} onClick={onHandelClick}>
                 delete
             </Button>
         </div>

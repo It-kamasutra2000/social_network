@@ -1,6 +1,8 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import queryString from 'query-string'
+
 import {
     selectIsFetching,
     selectUsers,
@@ -16,9 +18,7 @@ import { Preloader } from "../../Common/Preloader/Preloader";
 import { FilterForm } from "./FilterForm/FilterForm";
 import { User } from "./User/User"
 import s from './UsersPage.module.scss';
-import queryString from 'query-string'
 import { selectIsAuth } from "../../../Redux/selectors/auth-selector";
-
 
 
 export const UsersPage: React.FC = React.memo(() => {
@@ -35,12 +35,6 @@ export const UsersPage: React.FC = React.memo(() => {
     const filter = useSelector(selectFilter)
     const followingInProgress = useSelector(selectFollowingInProgress)
 
-
-    type UrlDataType = {
-        friend?: string
-        term?: string
-        page?: string | number
-    }
 
     useEffect(() => {
         const urlData = queryString.parse(history.location.search) as UrlDataType
